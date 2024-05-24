@@ -4,13 +4,13 @@ import { useParams } from 'react-router-dom';
 import { decrementLikes, getPropertiesByIdAsync, incrementLikes, updateLikesAsync } from '../features/property/propertiesSlice';
 import image from "../assets/image.png";
 import like from "../assets/like.svg";
+import toast, { Toaster } from 'react-hot-toast';
 
 const PropertyDetailsPage = () => {
     const propertyDetails = useSelector((state) => state.property.propertyDetails);
     const { id } = useParams();
     const dispatch = useDispatch();
     const [liked, setLiked] = useState(false);
-
     const handleLikes = (id) => {
         const likesData = JSON.parse(localStorage.getItem("likes")) || {};
         const data = { id: id };
@@ -40,6 +40,12 @@ const PropertyDetailsPage = () => {
         dispatch(getPropertiesByIdAsync(id));
     }, [id, dispatch]);
 
+    useEffect(()=>{
+        if(propertyDetails){   
+
+            toast.success("Check Your Email For Seller Details");
+        }
+    },[propertyDetails?.id])
     useEffect(() => {
         const likesData = JSON.parse(localStorage.getItem("likes")) || {};
         setLiked(!!likesData[id]);
@@ -51,6 +57,8 @@ const PropertyDetailsPage = () => {
             {propertyDetails ? (
                 <div>
                     <div className='flex sm:flex-row flex-col gap-20'>
+                <div><Toaster /></div>
+
                         {propertyDetails.imageUrl ? (
                             <img className='sm:h-1/6 sm:w-3/6 rounded-lg' src={propertyDetails.imageUrl} alt={propertyDetails.place} />
                         ) : (
