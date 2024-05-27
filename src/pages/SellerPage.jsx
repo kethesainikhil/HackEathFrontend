@@ -63,11 +63,11 @@ navigate(`/editProperty/${id}`)
           </div>
           </div>
         )) : 
-          <p>
+          <div>
             {
             userId ? properties.length == 0 ? <p className='text-center text-2x' >No listings yet</p> : <p className='text-center text-2xl '>fetching the data</p> : <p className='text-center text-2xl'>login to see your listings</p>
           }
-          </p>
+          </div>
         
       }
     </div>
