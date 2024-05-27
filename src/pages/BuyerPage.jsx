@@ -2,12 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filter, getAllPropertiesAsync, sendEmailAsync } from '../features/property/propertiesSlice';
 import image from "../assets/image.png";
+import house from "../assets/house.jpg"
+import house2 from "../assets/house2.jpeg"
+import house3 from "../assets/house3.jpeg"
+import house4 from "../assets/house4.jpeg"
+
 import { useNavigate } from 'react-router-dom';
 import { usePagination } from '../hooks/pagination';
 import PaginationBar from './PaginationBar';
 import toast, { Toaster } from 'react-hot-toast';
 
 const BuyerPage = () => {
+  const images = [image, house, house2, house3,house4];
+
+// Function to shuffle the array
+const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+};
+
+// Shuffle the images array
+const shuffledImages = shuffleArray(images);
   const dispatch = useDispatch();
   const allProperties = useSelector((state) => state.property.AllProperties);
   const [filteredProperties, setFilteredProperties] = useState(allProperties); // State for filtered properties
@@ -102,7 +120,7 @@ const BuyerPage = () => {
       <div className='sm:grid sm:grid-cols-4  mx-10 flex flex-col  justify-center items-center'>
        
         {allProperties?.length > 0 ? (
-          allProperties.map((property) => (
+          allProperties.map((property,index) => (
             <div className='px-2 py-2 rounded-md' key={property.id}>
               <div className="relative w-64 p-4 bg-white shadow-md rounded-lg overflow-hidden group">
                 <div className="absolute inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -110,7 +128,7 @@ const BuyerPage = () => {
                     I'm Interested
                   </button>
                 </div>
-                {property.imageUrl ? <img className='h-4/6 rounded-lg' src={property.imageUrl} alt={property.place} /> : <img className='h-4/6 rounded-lg' src={image} alt={property.place} />}
+                 <img className='h-4/6 rounded-lg' src={shuffledImages[index % shuffledImages.length]} alt={`Image for ${property.place}`}/>
                 <div className="p-4">
                   <h3 className="text-lg font-semibold">{property.place}</h3>
                   <div className='flex justify-between'>
