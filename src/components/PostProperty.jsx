@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import {useDispatch, useSelector} from "react-redux"
 import { addPropertyAsync } from '../features/property/propertiesSlice'
 const PostProperty = () => {
-    const[imageUrl,setImageUrl]  =useState(null);
     const{
         register,
         handleSubmit,
@@ -12,20 +11,10 @@ const PostProperty = () => {
         formState: { errors },
     } = useForm();
     const navigate = useNavigate();
-    const handleChange = (event) => {
-        const file = event.target.files[0];
 
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImageUrl(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
     const dispatch = useDispatch();
     const onSubmit = (data) =>{
-        data.image = imageUrl
+        // data.image = imageUrl
         const userId = localStorage.getItem("userId")
         data.id =  userId
         dispatch(addPropertyAsync(data))
@@ -78,10 +67,6 @@ const PostProperty = () => {
                         name="price"
                         placeholder="Price of Your Property" /> 
     
-                    <input onChange={(e)=> handleChange(e)}  type='file' className="block border bg-gray-400 border-grey-light w-1/2 mx-auto p-3 rounded mb-4" name="image" placeholder="image" />
-                  {
-                    imageUrl ?   <img src={imageUrl} alt="imageuploaded" /> : null
-                  }
                     <button
                         type="submit"
                         className="w-full text-center py-3 rounded bg-green text-black bg-blue-600 hover:bg-green-dark focus:outline-none my-1"
