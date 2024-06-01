@@ -1,6 +1,6 @@
 export async function signUpApi (data){
   const {firstName,lastName,email,phone,password} = data
-  return fetch(`${import.meta.env.VITE_BACKEND_URL}/user/signUp`,{
+  return fetch(`${import.meta.env.VITE_BACKEND_URL}/signUp`,{
     method:"POST",
     headers:{   
       "Content-Type":"application/json"
@@ -16,7 +16,7 @@ export async function signUpApi (data){
 }
 export async function loginApi (data){
   const {email,password} = data
-  return fetch(`${import.meta.env.VITE_BACKEND_URL}/user/login`,{
+  return fetch(`${import.meta.env.VITE_BACKEND_URL}/login`,{
     method:"POST",
     headers:{   
       "Content-Type":"application/json"

@@ -1,6 +1,6 @@
 export async function addPropertyApi (data){
   const {place,area,bedrooms,price,bathrooms,image,id} = data
-  return fetch(`${import.meta.env.VITE_BACKEND_URL}/property/addProperty/${id}`,{
+  return fetch(`${import.meta.env.VITE_BACKEND_URL}/addProperty/${id}`,{
     method:"POST",
     headers:{   
       "Content-Type":"application/json"
@@ -22,7 +22,7 @@ export async function addPropertyApi (data){
 }
 export async function sendEmailApi (data){
   const {sellerId,buyerId,propertyId} = data
-  return fetch(`${import.meta.env.VITE_BACKEND_URL}/property/sendEmail`,{
+  return fetch(`${import.meta.env.VITE_BACKEND_URL}/sendEmail`,{
     method:"POST",
     headers:{   
       "Content-Type":"application/json"
@@ -40,7 +40,7 @@ export async function sendEmailApi (data){
   })
 }
 export async function getPropertyApi (id){
-  return fetch(`${import.meta.env.VITE_BACKEND_URL}/property/getProperties/${id}`,{
+  return fetch(`${import.meta.env.VITE_BACKEND_URL}/getProperties/${id}`,{
     method:"GET",
     headers:{   
       "Content-Type":"application/json"
@@ -54,7 +54,7 @@ export async function getPropertyApi (id){
   })
 }
 export async function getPropertyByIdApi (id){
-  return fetch(`${import.meta.env.VITE_BACKEND_URL}/property/getPropertiesById/${id}`,{
+  return fetch(`${import.meta.env.VITE_BACKEND_URL}/getPropertiesById/${id}`,{
     method:"GET",
     headers:{   
       "Content-Type":"application/json"
@@ -68,7 +68,7 @@ export async function getPropertyByIdApi (id){
   })
 }
 export async function getAllPropertiesApi (){
-  return fetch(`${import.meta.env.VITE_BACKEND_URL}/property/getAllProperties`,{
+  return fetch(`${import.meta.env.VITE_BACKEND_URL}/getAllProperties`,{
     method:"GET",
     headers:{   
       "Content-Type":"application/json"
@@ -83,7 +83,7 @@ export async function getAllPropertiesApi (){
 }
 export async function udpateLikesApi (data){
   const{id,likes} = data;
-  return fetch(`${import.meta.env.VITE_BACKEND_URL}/property/updateProperty/${id}`,{
+  return fetch(`${import.meta.env.VITE_BACKEND_URL}/updateProperty/${id}`,{
     method:"PATCH",
     headers:{   
       "Content-Type":"application/json"
@@ -102,7 +102,7 @@ export async function udpateLikesApi (data){
 export async function updatePropertyApi (data){
   const{id} = data;
   delete data.id
-  return fetch(`${import.meta.env.VITE_BACKEND_URL}/property/updateProperty/${id}`,{
+  return fetch(`${import.meta.env.VITE_BACKEND_URL}/updateProperty/${id}`,{
     method:"PATCH",
     headers:{   
       "Content-Type":"application/json"
@@ -119,7 +119,7 @@ export async function updatePropertyApi (data){
   })
 }
 export async function deletePropertyApi (id){
-  return fetch(`${import.meta.env.VITE_BACKEND_URL}/property/deleteProperty/${id}`,{
+  return fetch(`${import.meta.env.VITE_BACKEND_URL}/deleteProperty/${id}`,{
     method:"DELETE",
     headers:{   
       "Content-Type":"application/json"
